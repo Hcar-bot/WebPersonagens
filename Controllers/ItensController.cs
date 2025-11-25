@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WebPersonagens.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ItensController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -22,6 +22,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => {
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
 })
+
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
@@ -53,5 +55,14 @@ app.MapControllerRoute(
 
 app.MapRazorPages()
    .WithStaticAssets();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await WebPersonagens.Data.DbInitializer.Initialize(userManager, roleManager);
+}
 
 app.Run();

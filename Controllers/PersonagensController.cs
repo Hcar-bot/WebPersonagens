@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WebPersonagens.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Padrao")]
     public class PersonagensController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -127,6 +127,7 @@ namespace WebPersonagens.Controllers
         }
 
         // GET: Personagens/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["ProfissaoId"] = new SelectList(_context.Profissoes, "Id", "Descricao");
@@ -134,6 +135,7 @@ namespace WebPersonagens.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Personagens/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -151,6 +153,7 @@ namespace WebPersonagens.Controllers
         }
 
         // GET: Personagens/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -168,6 +171,7 @@ namespace WebPersonagens.Controllers
             return View(personagem);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Personagens/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -204,6 +208,7 @@ namespace WebPersonagens.Controllers
         }
 
         // GET: Personagens/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -223,6 +228,7 @@ namespace WebPersonagens.Controllers
             return View(personagem);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Personagens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
