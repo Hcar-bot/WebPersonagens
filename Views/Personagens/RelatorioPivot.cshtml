@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Relatório de Contagem por Nível (Pivot)";
+    int nivelBaixo = (int)ViewData["NivelBaixo"];
+    int nivelMedio = (int)ViewData["NivelMedio"];
+    int nivelAlto = (int)ViewData["NivelAlto"];
+    int total = nivelBaixo + nivelMedio + nivelAlto;
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Este relatório simula uma visão de **Pivot** ao distribuir a contagem de personagens em diferentes faixas de nível.</p>
+<hr />
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Total de Personagens Analisados: **@total**</h5>
+        <p class="card-text">Distribuição por Faixa de Nível:</p>
+        <table class="table table-sm table-bordered">
+            <thead class="table-info">
+                <tr>
+                    <th>Nível Baixo (1-50)</th>
+                    <th>Nível Médio (51-500)</th>
+                    <th>Nível Alto (>500)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="fw-bold">
+                    <td class="text-center">
+                        <span class="badge bg-secondary fs-6">@nivelBaixo</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-primary fs-6">@nivelMedio</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-danger fs-6">@nivelAlto</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar ao Início</a>
+</div>

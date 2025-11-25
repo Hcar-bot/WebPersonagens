@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebPersonagens.Data;
 using WebPersonagens.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebPersonagens.Controllers
 {
+    [Authorize]
     public class UniversosController : Controller
     {
         private readonly ApplicationDbContext _context;

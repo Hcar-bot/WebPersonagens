@@ -1,0 +1,63 @@
+﻿@model WebPersonagens.Models.PersonagemDetalheViewModel
+
+@{
+    ViewData["Title"] = "Detalhe do Poder";
+}
+
+<h1>Detalhe do Poder</h1>
+
+<h3>Personagem: @Model.Personagem.Nome</h3>
+<hr />
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        **Cálculo de Poder**
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                Vida Base (@Html.DisplayNameFor(model => model.Personagem.VidaMaxima))
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Personagem.VidaMaxima)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TotalValorItens)
+            </dt>
+            <dd class="col-sm-9 text-success fw-bold">
+                @Model.TotalValorItens.ToString("C2")
+            </dd>
+
+            <dt class="col-sm-3 display-6 text-danger">
+                @Html.DisplayNameFor(model => model.PoderTotal)
+            </dt>
+            <dd class="col-sm-9 display-6 text-danger">
+                @Model.PoderTotal
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<h4>Itens Adquiridos:</h4>
+
+@if (Model.Personagem.Itens != null && Model.Personagem.Itens.Any())
+{
+    <ul class="list-group">
+        @foreach (var item in Model.Personagem.Itens)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @item.Nome - (@item.Descricao)
+                <span class="badge bg-success rounded-pill">@item.Valor.ToString("C2")</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="alert alert-warning">Este personagem não possui itens que aumentam seu poder.</p>
+}
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista de Personagens</a>
+</div>

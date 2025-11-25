@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebPersonagens.Models.ContagemPorUniversoViewModel>
+
+@{
+    ViewData["Title"] = "Relatório de Personagens por Universo";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Contagem de personagens agrupados por seu universo de origem.</p>
+<hr />
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeUniverso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContagemPersonagens)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeUniverso)
+                </td>
+                <td>
+                    <span class="badge bg-primary rounded-pill fs-6">@Html.DisplayFor(modelItem => item.ContagemPersonagens)</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar ao Início</a>
+</div>
