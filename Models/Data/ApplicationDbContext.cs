@@ -4,7 +4,6 @@ using WebPersonagens.Models;
 
 namespace WebPersonagens.Data
 {
-    // Tem que ser PUBLIC e herdar de IdentityDbContext
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
